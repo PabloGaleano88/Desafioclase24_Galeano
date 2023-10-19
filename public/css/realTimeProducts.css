@@ -1,0 +1,40 @@
+.row {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    
+}
+.card{
+    margin: 20px;
+}
+#contenido{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.formulario_add{
+    max-width: 500px;
+}
+.formulario_del{
+    max-width:  500px;;
+}
+
+.form-group{
+    color:white;
+}
+
+h2{
+    color:white;
+}
+.image-container {
+    max-width: 100%;
+    height: 100px; 
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+}
+
+.card-img-top {
+    width: auto;
+    height: 100%; 
+}

@@ -1,0 +1,25 @@
+<div id="contenido">
+    <div class="go_to_home">
+        <a href="http://localhost:8080/products"><button type="button" class="btn btn-warning">Home</button></a>
+    </div>
+    {{#each productsOnCart}}
+    <div class="card" style="width: 18rem;">
+        <div class="image-container">
+            <img src="/static/thumbnails/{{this.productId.thumbnail}}" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{this.productId.title}}</h5>
+            {{this.productId.category}}
+            <h6>U$D: {{this.productId.price}}</h6>
+            <p class="card-text">{{this.productId.description}}</p>
+        </div>
+        <div class="purchase_quantity">
+            Cantidad en carrito: {{this.quantity}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Code: {{this.productId.code}}</li>
+            <li class="list-group-item">ID: {{this.productId._id}}</li>
+        </ul>
+    </div>
+    {{/each}}
+</div>
