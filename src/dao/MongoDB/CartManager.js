@@ -2,6 +2,8 @@ import { cartsModel } from '../models/cartsModel.js'
 import { productsModel } from '../models/productsModel.js'
 
 class CartManager {
+
+    
     async addCart() {
         try{
             const cart = await cartsModel.create({

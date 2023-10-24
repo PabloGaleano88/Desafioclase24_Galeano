@@ -2,23 +2,32 @@ import passport from 'passport'
 import LocalStrategy from 'passport-local'
 import bcrypt from 'bcrypt'
 import { userModel } from '../dao/models/userModel.js'
+import CartManager from '../dao/MongoDB/CartManager.js'
 import GitHubStrategy from 'passport-github2'
+import jwt from 'passport-jwt'
+
+const JWTStrategy = jwt.Strategy
+const ExtractJWT = jwt.ExtractJwt
+
+const cartManager = new CartManager()
 
 const initializePassport = () => {
+    
     passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
         const { first_name, last_name, age } = req.body
-
         try {
-            const exists = await userModel.findOne({ email: username })
+            const usernameLowerCase = username.toLowerCase()
+            const exists = await userModel.findOne({ email: usernameLowerCase })
             if (exists) {
                 return done(null, false)
             }
-            const usernameLowerCase = username.toLowerCase()
+            const cartId = await cartManager.addCart()
             const user = await userModel.create({
                 first_name,
                 last_name,
                 email: usernameLowerCase,
                 age,
+                cartId,
                 password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
             })
 
@@ -71,6 +80,30 @@ const initializePassport = () => {
             return done(error)
         }
     }))
+
+    const cookieExtractor = (req) => {
+        let token = null
+        
+        if(req && req.cookies){
+            token = req.cookies['token']
+        }
+        
+        return token
+    }
+
+
+    passport.use('jwt',new JWTStrategy({
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+        secretOrKey: 'tokensecreto',
+    }, async (jwt_payload, done)=>{
+        try{
+            return done(null,jwt_payload)
+        }
+        catch(error){
+            return done (error)
+        }
+    })
+    )
 
 
 

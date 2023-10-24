@@ -1,29 +1,41 @@
-.login_form{
+.login_form {
     display: flex;
     justify-content: center;
 }
-div.row{
+
+div.row {
     --bs-gutter-x: 0rem;
 }
-form{
+
+form {
     max-width: 500px;
 }
-.border_form{
-justify-content: center;
-width: 500px;
-margin-top: 50px;
+
+.border_form {
+    justify-content: center;
+    width: 500px;
+    margin-top: 50px;
 }
-.create_account{
+
+.create_account {
     display: flex;
     justify-content: center;
 }
-.h3{
-    color:white
+
+.h3 {
+    color: white
 }
-.div_line{
+
+.div_line {
     margin-top: 15px;
 }
-.github_login{
+
+.passport_logo {
+    margin-right: 5px;
+    max-height: 25px;
+}
+
+.github_login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,10 +43,19 @@ margin-top: 50px;
     padding: 5px;
     background-color: #6e5494;
     border-radius: 5px;
-    color:white;
+    color: white;
 }
 
-.github_logo{
-margin-right: 5px;
+.github_login:hover {
+    background-color: #75668c;
+}
+
+.github_logo {
+    margin-right: 5px;
     max-height: 30px;
+}
+
+.radiobutton_name{
+    margin-left:5px;
+    color:white;
 }

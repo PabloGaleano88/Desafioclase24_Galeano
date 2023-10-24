@@ -7,6 +7,7 @@ import viewsRouter from './routes/viewsRouter.js'
 import userRouter from './routes/userRouter.js';
 import ProductManager from './dao/MongoDB/ProductManager.js'
 import mongoose from 'mongoose'
+import cookieParser from 'cookie-parser';
 
 import MongoStore from 'connect-mongo';
 import session from 'express-session';
@@ -15,6 +16,7 @@ import { messageModel } from './dao/models/messageModels.js';
 import passport from 'passport';
 
 import initializePassport from './config/passport.config.js';
+import sessionRouter from './routes/sessionRouter.js';
 
 const app = express()
 
@@ -27,6 +29,8 @@ mongoose.connect('mongodb+srv://pablogaleano88:2lgGy6n0IvV93ztm@cluster0.kkuooos
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cookieParser())
 
 app.engine('handlebars', handlebars.engine());
 app.set('views', './src/views');
@@ -68,4 +72,5 @@ app.use(passport.session())
 app.use('/', viewsRouter)
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartsRouter)
+app.use('/api/session',sessionRouter)
 app.use('/api',userRouter)

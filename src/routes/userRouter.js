@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { userModel } from "../dao/models/userModel.js";
 import passport from 'passport'
 
 const uRouter = Router()
@@ -15,9 +14,10 @@ uRouter.post('/login', passport.authenticate('login', { failureRedirect: '/login
     req.session.last_name = req.user.last_name
     req.session.email = req.user.email
     req.session.age = req.user.age
+    req.session.cartId = req.user.cartId
     req.session.isLogged = true
 
-    res.redirect('/products')
+    res.redirect('/products') 
 })
 
 uRouter.get('/logout', async (req, res) => {
@@ -33,6 +33,7 @@ uRouter.get('/githubcallback', passport.authenticate('github', { failureRedirect
     req.session.last_name = req.user.last_name
     req.session.email = req.user.email
     req.session.age = req.user.age
+    req.session.cart = req.user.cart
     req.session.isLogged = true
     
     res.redirect('/products')

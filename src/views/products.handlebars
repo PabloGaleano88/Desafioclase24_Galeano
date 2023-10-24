@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="go_to_cart">
-        <a href="http://localhost:8080/carts/65164a3eb27a0697f1966a65"><button type="button" class="btn btn-warning">Ir
+        <a href="http://localhost:8080/carts/{{cartId}}"><button type="button" class="btn btn-warning">Ir
                 a mi carrito</button></a>
     </div>
     {{#each products}}
@@ -37,8 +37,7 @@
             <p class="card-text">{{this.description}}</p>
         </div>
         <div class="purchase_botton">
-            <button type="button" class="btn btn-warning" id="purchase" data-productid="{{this._id}}">Add to Cart
-                +</button>
+            <button type="button" class="btn btn-warning" id="purchase" data-productid="{{this._id}}" data-cartid="{{../cartId}}">Add to Cart +</button>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Stock: {{this.stock}} - Status: {{this.status}} </li>

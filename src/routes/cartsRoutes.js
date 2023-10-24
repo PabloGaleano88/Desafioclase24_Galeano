@@ -6,8 +6,7 @@ const cartManager = new CartManager('./src/carts.json')
 const cartRouter = Router()
 
 cartRouter.post('/',async (req,res) => {
-    const {products} = req.body
-    const result = await cartManager.addCart(products)
+    const result = await cartManager.addCart()
     res.status(200).send(result)
 })
 
