@@ -1,4 +1,4 @@
-# Refactor a nuestro Login - Clase 24 - Galeano Pablo
+# Desafío Complementario - Clase 24 - Galeano Pablo
 ## Comisión: 47295
 
 ### Alumno: Pablo Galeano
